@@ -2,28 +2,51 @@ package com.company.restaurant;
 import java.util.*;
 
 public class Menu {
-    private ArrayList<String> menuItems;
-    private String lastUpdated;
-
-    public Menu(ArrayList<String> menuItems) {
-        this.menuItems = menuItems;
+    @Override
+    public String toString() {
+        return "{" +
+                "menuItems=" + menuItems +
+                '}';
     }
-    
-    ArrayList<String> getMenuItems() {
+
+    private ArrayList<Object> menuItems = new ArrayList<>();
+    private Date lastUpdated;
+
+
+    ArrayList<Object> getMenuItems() {
         return menuItems;
     }
 
-    void setMenuItems(ArrayList<String> aMenuItems) {
+    void setMenuItems(ArrayList<Object> aMenuItems) {
         menuItems = aMenuItems;
     }
 
-    String getLastUpdated() {
+    Date getLastUpdated() {
         return lastUpdated;
     }
 
-    void setLastUpdated(String aLastUpdated) {
+    void setLastUpdated(Date aLastUpdated) {
         lastUpdated = aLastUpdated;
     }
 
+
+    void addMenuItem (Object menuItem) {
+        if (!menuItems.contains(menuItem)) {
+            this.menuItems.add(menuItem);
+            this.lastUpdated = new Date();
+        } else {
+            System.out.println("This item is already on the menu.");
+        }
+    }
+
+    void removeMenuItem (Object menuItem) {
+        menuItems.remove(menuItem);
+    }
+
+    void print () {
+            for (Object menuItem : menuItems) {
+                System.out.println(menuItem + "\n");
+            }
+    }
 
 }
